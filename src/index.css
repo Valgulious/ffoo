@@ -11,3 +11,21 @@ button {
   line-height: inherit;
   appearance: none;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p,
+h4,
+h3,
+h2,
+h1 {
+  margin: 0;
+}
+
+input::-ms-clear {
+  display: none;
+}

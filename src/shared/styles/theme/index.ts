@@ -1,11 +1,14 @@
-import { Theme } from 'shared/types/theme.ts';
+import type { Theme } from 'shared/types/theme.ts';
 
 export const theme: Theme = {
     colors: {
-        black: '#000000',
-        white: '#ffffff',
-        red: '#db001b',
-        gray: '#c1c1c1'
+        neutral0: '#ffffff',
+        neutral200: '#e8e8e8',
+        neutral400: '#c1c1c1',
+        neutral600: '#969696',
+        neutral900: '#000000',
+        red200: '#fae5e8',
+        red900: '#db001b'
     },
     transition: {
         normal: '400ms',

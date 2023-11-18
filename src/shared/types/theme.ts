@@ -1,9 +1,14 @@
 export type Color = {
-    red: string;
-    gray: string;
-    black: string;
-    white: string;
+    neutral0: string;
+    neutral200: string;
+    neutral400: string;
+    neutral600: string;
+    neutral900: string;
+    red200: string;
+    red900: string;
 };
+
+export type ColorKey = keyof Color;
 
 export type Transition = {
     normal: string;
