@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import rgba from 'polished/lib/color/rgba';
-import type { ColorKey, Theme } from 'shared/types/theme.ts';
+import type { ColorKey, Theme } from 'shared/types/theme';
 
 export const Wrapper = styled.div();
 
