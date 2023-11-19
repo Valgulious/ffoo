@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import type { RegistrationFormSubmitHandler } from './model/types/from';
+import type { RegistrationFormSubmitHandler } from './model/types/form.ts';
 import { Form } from './ui/Form';
 import { Wrapper } from './styles';
 

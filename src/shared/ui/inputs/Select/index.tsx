@@ -64,6 +64,7 @@ function SelectWitRef<
                 isSearchable={isSearchable}
                 placeholder={placeholder}
                 noOptionsMessage={() => 'Нет опций'}
+                blurInputOnSelect
                 {...restProps}
             />
             {hasError && <Error>{errorMessage}</Error>}
