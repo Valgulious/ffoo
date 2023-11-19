@@ -6,6 +6,7 @@ export type Color = {
     neutral900: string;
     red200: string;
     red900: string;
+    blue500: string;
 };
 
 export type ColorKey = keyof Color;

@@ -25,7 +25,7 @@ export const BaseInput = styled.input<InputProps>`
     all: unset;
     box-sizing: border-box;
     width: 100%;
-    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
     border-radius: 4px;
     padding: 20px;
     background-color: ${({ theme }) => theme.colors.neutral200};
@@ -37,6 +37,7 @@ export const BaseInput = styled.input<InputProps>`
         background-color: ${({ theme }) => theme.colors.neutral0};
         border: 1px solid ${({ theme }) => theme.colors.neutral400};
         box-shadow: 0 5px 10px ${({ theme }) => rgba(theme.colors.neutral900, 0.3)};
+        padding: 19px 20px;
 
         ${({ theme }) => placeholderInputCss(theme, 'neutral600')};
     }

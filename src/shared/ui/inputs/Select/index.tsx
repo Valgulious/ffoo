@@ -12,14 +12,18 @@ import {
     menuListCss,
     noOptionsCss,
     optionCss,
+    Wrapper,
+    Error,
 } from './styles';
 
-type SelectOption<Key = string> = OptionInterface<Key>
+export type SelectOption<Key = string> = OptionInterface<Key>
 
 export type SelectProps<
     Option = SelectOption,
     IsMulti extends boolean = false,
-> = BaseSelectProps<Option, IsMulti>;
+> = BaseSelectProps<Option, IsMulti> & {
+    errorMessage?: string;
+};
 
 function SelectWitRef<
     Option = SelectOption,
@@ -29,37 +33,41 @@ function SelectWitRef<
         isSearchable = true,
         components,
         placeholder = 'Выбрать...',
+        errorMessage,
         ...restProps
     } = props;
     const theme = useTheme();
+    const hasError = !!errorMessage;
     const customStyles: StylesConfig<Option, IsMulti> = useMemo(
         () => ({
-            control: (baseCss, { menuIsOpen, isFocused }) => ({
-                ...baseCss,
-                ...controlCss(theme, menuIsOpen || isFocused),
+            control: (_, { menuIsOpen, isFocused }) => ({
+                ...controlCss(theme, menuIsOpen || isFocused, hasError),
             }),
-            placeholder: (baseCss) => ({ ...baseCss, ...placeholderCss(theme) }),
-            menuList: (baseCss) => ({ ...baseCss, ...menuListCss(theme) }),
-            noOptionsMessage: (baseCss) => ({ ...baseCss, ...noOptionsCss }),
-            option: (baseCss, { isFocused, isSelected }) =>
-                ({ ...baseCss, ...optionCss(theme, isFocused, isSelected) }),
-    }), []);
+            placeholder: (_, { isFocused }) => ({ ...placeholderCss(theme, hasError, isFocused) }),
+            menuList: () => ({ ...menuListCss(theme) }),
+            noOptionsMessage: () => ({ ...noOptionsCss }),
+            option: (_, { isFocused, isSelected }) =>
+                ({ ...optionCss(theme, isFocused, isSelected) }),
+    }), [hasError]);
 
     return (
-        <ReactSelect<Option, IsMulti>
-            ref={ref}
-            unstyled
-            styles={customStyles}
-            components={{
-                IndicatorSeparator: undefined,
-                ClearIndicator: undefined,
-                ...components,
-            }}
-            isSearchable={isSearchable}
-            placeholder={placeholder}
-            noOptionsMessage={() => 'Нет опций'}
-            {...restProps}
-        />
+        <Wrapper>
+            <ReactSelect<Option, IsMulti>
+                ref={ref}
+                unstyled
+                styles={customStyles}
+                components={{
+                    IndicatorSeparator: undefined,
+                    ClearIndicator: undefined,
+                    ...components,
+                }}
+                isSearchable={isSearchable}
+                placeholder={placeholder}
+                noOptionsMessage={() => 'Нет опций'}
+                {...restProps}
+            />
+            {hasError && <Error>{errorMessage}</Error>}
+        </Wrapper>
     )
 }
 

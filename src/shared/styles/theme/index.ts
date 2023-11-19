@@ -8,7 +8,8 @@ export const theme: Theme = {
         neutral600: '#969696',
         neutral900: '#000000',
         red200: '#fae5e8',
-        red900: '#db001b'
+        red900: '#db001b',
+        blue500: '#1b75cc',
     },
     transition: {
         normal: '400ms',
