@@ -3,14 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from 'shared/ui/inputs/Input';
 import { PatternFormatInput } from 'shared/ui/inputs/PatternFormatInput';
 import { Select } from 'shared/ui/controlled/Select';
-import type { RegistrationForm } from 'pages/RegistrationPage/model/types/form.ts';
+import type { RegistrationForm } from 'pages/RegistrationPage/model/types/form';
 import { useRegistrationForm, UseRegistrationFormProps } from 'pages/RegistrationPage/model/service/useRegistrationForm';
 import { registrationFormValidationSchema } from 'pages/RegistrationPage/model/validation/registrationFormValidationSchema';
-import { useCityOptions } from 'pages/RegistrationPage/model/service/useCityOptions.ts';
-import { useDateOptions } from 'pages/RegistrationPage/model/service/useDateOptions.ts';
-import { useTimeOptions } from 'pages/RegistrationPage/model/service/useTimeOptions.ts';
-//TODO: Возможно вынести в entities
-import { City } from './ui/City';
+import { useCityOptions } from 'pages/RegistrationPage/model/service/useCityOptions';
+import { useDateOptions } from 'pages/RegistrationPage/model/service/useDateOptions';
+import { useTimeOptions } from 'pages/RegistrationPage/model/service/useTimeOptions';
+import { CityInformation } from './ui/CityInformation';
 import { Wrapper, SplitInputsContainer, Button } from './styles';
 
 type Props = UseRegistrationFormProps & {
@@ -46,7 +45,7 @@ export const Form: FC<Props> = (props) => {
                 control={control}
                 {...getInputError('city')}
             />
-            <City cityId={city?.value} />
+            <CityInformation cityId={city?.value} />
             <SplitInputsContainer>
                 <Select<RegistrationForm>
                     placeholder="Дата"

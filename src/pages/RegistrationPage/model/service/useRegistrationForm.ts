@@ -14,6 +14,7 @@ export const useRegistrationForm = (props: UseRegistrationFormProps) => {
         formState,
         control,
         watch,
+        reset,
     } = useForm<RegistrationForm>(useFormProps);
     const { errors, isValid } = formState;
     const getInputError = useInputErrors(errors);
@@ -24,6 +25,6 @@ export const useRegistrationForm = (props: UseRegistrationFormProps) => {
         control,
         watch,
         isValid,
-        onSubmit: handleSubmit((data) => onSubmit(data, { formState })),
+        onSubmit: handleSubmit((data) => onSubmit(data, { reset })),
     }
 }

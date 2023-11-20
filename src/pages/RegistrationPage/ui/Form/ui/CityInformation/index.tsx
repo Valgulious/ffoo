@@ -8,7 +8,7 @@ type Props = {
     cityId?: string;
 }
 
-export const City: FC<Props> = (props) => {
+export const CityInformation: FC<Props> = (props) => {
     const { cityId } = props;
     const city = useCity(cityId);
 
