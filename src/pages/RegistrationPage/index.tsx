@@ -5,6 +5,7 @@ import { useOrder } from 'features/order/service/useOrder';
 import type { RegistrationFormSubmitHandler } from './model/types/form';
 import { Form } from './ui/Form';
 import { Wrapper } from './styles';
+import { showToast } from 'shared/lib/showToast';
 
 export const RegistrationPage: FC = () => {
     const { saveOrder } = useOrder();
@@ -26,6 +27,9 @@ export const RegistrationPage: FC = () => {
         await saveOrder(order);
 
         reset();
+        showToast('Запись успешно создана', {
+            type: 'success',
+        })
         setIsLoading(false);
     };
 
