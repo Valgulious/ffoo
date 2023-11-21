@@ -6,3 +6,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Br = styled.br();
+
+export const Paragraph = styled.p();

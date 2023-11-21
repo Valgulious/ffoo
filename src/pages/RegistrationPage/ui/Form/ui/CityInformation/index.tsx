@@ -1,8 +1,9 @@
 import { FC, Fragment } from 'react';
 import { Phone } from 'shared/ui/format/Phone';
 import { Price } from 'shared/ui/format/Price';
+import { Link } from 'shared/ui/navigation/Link';
 import { useCity } from 'pages/RegistrationPage/model/service/useCity';
-import { Wrapper, Br } from './styles';
+import { Wrapper, Paragraph } from './styles';
 
 type Props = {
     cityId?: string;
@@ -20,20 +21,22 @@ export const CityInformation: FC<Props> = (props) => {
 
     return (
         <Wrapper>
-            {address}
-            <Br />
-            {phones.map((phone, index) => {
-                const suffix = index === phones.length - 1 ? '' : ', ';
+            <Paragraph>{address}</Paragraph>
+            <Paragraph>
+                {phones.map((phone, index) => {
+                    const suffix = index === phones.length - 1 ? '' : ', ';
 
-                return (
-                    <Fragment key={phone}>
-                        <Phone phone={phone} />
-                        {suffix}
-                    </Fragment>
-                );
-            })}
-            <Br />
-            Стоимость услуги <Price price={price} />
+                    return (
+                        <Fragment key={phone}>
+                            <Link href={`tel:+${phone}`}>
+                                <Phone phone={phone} />
+                            </Link>
+                            {suffix}
+                        </Fragment>
+                    );
+                })}
+            </Paragraph>
+            <Paragraph>Стоимость услуги <Price price={price} /></Paragraph>
         </Wrapper>
     );
 };

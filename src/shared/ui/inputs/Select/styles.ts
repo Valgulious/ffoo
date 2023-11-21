@@ -50,11 +50,11 @@ export const noOptionsCss = css`
 `;
 
 const focusedOptionCss = (theme: Theme) => css`
-    background-color: ${theme.colors.neutral400};
+    background-color: ${theme.colors.neutral200};
 `;
 
 const selectedOptionCss = (theme: Theme) => css`
-    background-color: ${theme.colors.neutral600};
+    background-color: ${theme.colors.neutral400};
 `;
 
 export const optionCss = (theme: Theme, isFocused: boolean, isSelected: boolean) => css`

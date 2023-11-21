@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 import { v4 } from 'uuid';
+import { showToast } from 'shared/lib/showToast';
 import { Order } from 'entities/Order';
 import { useOrder } from 'features/order/service/useOrder';
 import type { RegistrationFormSubmitHandler } from './model/types/form';
 import { Form } from './ui/Form';
-import { Wrapper } from './styles';
-import { showToast } from 'shared/lib/showToast';
+import { Hint } from './ui/Hint';
+import { Wrapper, Title, SubTitle } from './styles';
 
 export const RegistrationPage: FC = () => {
     const { saveOrder } = useOrder();
@@ -35,9 +36,10 @@ export const RegistrationPage: FC = () => {
 
     return (
         <Wrapper>
-            <p>ffoo</p>
-            <p>Онлайн запись</p>
+            <Title>ffoo</Title>
+            <SubTitle>Онлайн запись</SubTitle>
             <Form onSubmit={handleSubmit} isSubmitting={isLoading} />
+            <Hint />
         </Wrapper>
     );
 };

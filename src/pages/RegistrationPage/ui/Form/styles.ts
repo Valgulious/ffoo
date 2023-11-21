@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Button as BaseButton } from 'shared/ui/inputs/Button';
 
 export const Wrapper = styled.form`
+    margin-top: 40px;
     display: grid;
     row-gap: 20px;
 `;
