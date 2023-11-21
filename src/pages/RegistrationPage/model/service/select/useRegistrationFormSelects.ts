@@ -15,7 +15,10 @@ export const useRegistrationFormSelects = (args: Args) => {
     const timeOptions = useTimeOptions(city?.value, date?.value);
 
     useEffect(() => {
-        setValue('city', cityOptions.find(({ label }) => label === 'Владивосток'))
+        setValue(
+            'city',
+            cityOptions.find(({ label }) => label === 'Владивосток'),
+        );
     }, [cityOptions.length]);
 
     useEffect(() => {
@@ -35,5 +38,5 @@ export const useRegistrationFormSelects = (args: Args) => {
         cityOptions,
         dateOptions,
         timeOptions,
-    }
-}
+    };
+};

@@ -10,8 +10,8 @@ export const useDateOptions = (cityId?: string): Option[] => {
         return Object.keys(dates).map((date) => ({
             value: date,
             label: dayjs(date).format(DATE),
-        }))
+        }));
     }
 
     return [];
-}
+};

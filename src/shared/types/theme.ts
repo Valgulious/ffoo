@@ -13,19 +13,19 @@ export type ColorKey = keyof Color;
 
 export type Transition = {
     normal: string;
-}
+};
 
 export type FontWeight = {
     regular: string;
     medium: string;
     semiBold: string;
     bold: string;
-}
+};
 
 export type Theme = {
     colors: Color;
     transition: Transition;
     font: {
-        weight: FontWeight,
-    }
-}
+        weight: FontWeight;
+    };
+};

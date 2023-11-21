@@ -3,10 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from 'shared/ui/inputs/Input';
 import { PatternFormatInput } from 'shared/ui/inputs/PatternFormatInput';
 import { Select } from 'shared/ui/controlled/Select';
-import type { RegistrationForm } from 'pages/RegistrationPage/model/types/form';
-import { useRegistrationForm, UseRegistrationFormProps } from 'pages/RegistrationPage/model/service/useRegistrationForm';
-import { useRegistrationFormSelects } from 'pages/RegistrationPage/model/service/select/useRegistrationFormSelects.ts';
+import {
+    useRegistrationForm,
+    UseRegistrationFormProps,
+} from 'pages/RegistrationPage/model/service/useRegistrationForm';
+import { useRegistrationFormSelects } from 'pages/RegistrationPage/model/service/select/useRegistrationFormSelects';
 import { registrationFormValidationSchema } from 'pages/RegistrationPage/model/validation/registrationFormValidationSchema';
+import type { RegistrationForm } from 'pages/RegistrationPage/model/types/form';
 import { CityInformation } from './ui/CityInformation';
 import { Wrapper, SplitInputsContainer, Button } from './styles';
 
@@ -16,20 +19,16 @@ type Props = UseRegistrationFormProps & {
 
 export const Form: FC<Props> = (props) => {
     const { isSubmitting, ...formProps } = props;
-    const {
-        register,
-        getInputError,
-        onSubmit,
-        isValid,
-        control,
+    const { register, getInputError, onSubmit, isValid, control, watch, setValue } =
+        useRegistrationForm({
+            mode: 'onBlur',
+            resolver: zodResolver(registrationFormValidationSchema),
+            ...formProps,
+        });
+    const { cityOptions, dateOptions, timeOptions, city } = useRegistrationFormSelects({
         watch,
         setValue,
-    } = useRegistrationForm({
-        mode: 'onBlur',
-        resolver: zodResolver(registrationFormValidationSchema),
-        ...formProps,
     });
-    const { cityOptions, dateOptions, timeOptions, city } = useRegistrationFormSelects({ watch, setValue });
     const isButtonDisabled = !isValid || isSubmitting;
 
     return (
@@ -41,7 +40,7 @@ export const Form: FC<Props> = (props) => {
                 control={control}
                 {...getInputError('city')}
             />
-            <CityInformation cityId={city?.value}/>
+            <CityInformation cityId={city?.value} />
             <SplitInputsContainer>
                 <Select<RegistrationForm>
                     placeholder="Дата"
@@ -67,15 +66,8 @@ export const Form: FC<Props> = (props) => {
                 }}
                 {...register('phone')}
             />
-            <Input
-                placeholder="Ваше имя"
-                {...register('name')}
-                {...getInputError('name')}
-            />
-            <Button
-                type="submit"
-                disabled={isButtonDisabled}
-            >
+            <Input placeholder="Ваше имя" {...register('name')} {...getInputError('name')} />
+            <Button type="submit" disabled={isButtonDisabled}>
                 Записаться
             </Button>
         </Wrapper>

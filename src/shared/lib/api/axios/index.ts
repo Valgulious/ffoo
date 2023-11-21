@@ -11,7 +11,7 @@ export default abstract class AbstractAxiosClient {
             timeout: 30000,
             timeoutErrorMessage: TIMEOUT_ERROR_MESSAGE,
         });
-    };
+    }
 
     public get client(): AxiosInstance {
         return this._client;

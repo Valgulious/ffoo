@@ -5,35 +5,33 @@ import type { Date, Time } from 'entities/Date';
 
 type Response = {
     data: Date;
-}
+};
 
-type DateRecord = Record<string, Time[]>
+type DateRecord = Record<string, Time[]>;
 
 export const useDates = (cityId?: string) => {
-    return useSWR(
-        cityId ?? false,
-        async () => {
-            if (cityId) {
-                const { data: { data } } = await apiClient.rest.get<Response>(DATES(cityId));
-                const dates: DateRecord = {};
+    return useSWR(cityId ?? false, async () => {
+        if (cityId) {
+            const {
+                data: { data },
+            } = await apiClient.rest.get<Response>(DATES(cityId));
+            const dates: DateRecord = {};
 
-                Object.entries(data).forEach(([date, value]) => {
-                    const times =  Object.values(value).filter(({ isBooked }) => !isBooked);
+            Object.entries(data).forEach(([date, value]) => {
+                const times = Object.values(value).filter(({ isBooked }) => !isBooked);
 
-                    if (times.length > 0) {
-                        dates[date] = times;
-                    }
-                })
-
-                if (Object.keys(dates).length > 0) {
-                    return dates;
+                if (times.length > 0) {
+                    dates[date] = times;
                 }
+            });
 
-                return undefined;
-
-            } else {
-                return undefined;
+            if (Object.keys(dates).length > 0) {
+                return dates;
             }
+
+            return undefined;
         }
-    )
-}
+
+        return undefined;
+    });
+};

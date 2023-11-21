@@ -27,16 +27,13 @@ export const RegistrationPage: FC = () => {
 
         reset();
         setIsLoading(false);
-    }
-    
+    };
+
     return (
         <Wrapper>
             <p>ffoo</p>
             <p>Онлайн запись</p>
-            <Form
-                onSubmit={handleSubmit}
-                isSubmitting={isLoading}
-            />
+            <Form onSubmit={handleSubmit} isSubmitting={isLoading} />
         </Wrapper>
     );
 };

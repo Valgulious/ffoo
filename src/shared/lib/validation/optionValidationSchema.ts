@@ -8,5 +8,5 @@ export const optionValidationSchema = (requiredError: string) =>
         },
         {
             required_error: requiredError,
-        }
+        },
     );

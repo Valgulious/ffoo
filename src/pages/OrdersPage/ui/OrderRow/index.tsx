@@ -1,15 +1,15 @@
 import { FC, MouseEventHandler } from 'react';
 import dayjs from 'dayjs';
-import type { Order } from 'entities/Order';
 import { DATE } from 'shared/const/dateFormat';
 import { Phone } from 'shared/ui/format/Phone';
 import { Button } from 'shared/ui/inputs/Button';
+import type { Order } from 'entities/Order';
 import { Row, Cell } from './styles';
 
 type Props = {
     order: Order;
     removeOrder: (ordersId: string) => void;
-}
+};
 
 export const OrderRow: FC<Props> = (props) => {
     const { order, removeOrder } = props;
@@ -17,7 +17,7 @@ export const OrderRow: FC<Props> = (props) => {
 
     const handleRemoveButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
         removeOrder(id);
-    }
+    };
 
     return (
         <Row>
@@ -29,9 +29,7 @@ export const OrderRow: FC<Props> = (props) => {
                 <Phone phone={phone} />
             </Cell>
             <Cell>
-                <Button onClick={handleRemoveButtonClick}>
-                    Удалить
-                </Button>
+                <Button onClick={handleRemoveButtonClick}>Удалить</Button>
             </Cell>
         </Row>
     );

@@ -12,4 +12,4 @@ export interface RegistrationForm {
 export type RegistrationFormSubmitHandler = (
     data: RegistrationForm,
     helpers: Pick<UseFormReturn<RegistrationForm>, 'reset'>,
-) => Promise<void>
+) => Promise<void>;

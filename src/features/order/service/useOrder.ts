@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
-import type { Order } from 'entities/Order';
 import { delay } from 'shared/lib/helpers/delay';
 import { ORDERS_LOCAL_STORAGE_NAME } from 'shared/const/localStorage';
+import type { Order } from 'entities/Order';
 
 export const useOrder = () => {
     const [orders, setOrders] = useState<Order[]>([]);
-
-    useEffect(() => {
-        setOrders(getOrders)
-    }, []);
 
     const getOrders = (): Order[] => {
         try {
@@ -19,12 +15,12 @@ export const useOrder = () => {
         } catch {
             return [];
         }
-    }
+    };
 
     const saveOrders = (orderList: Order[]) => {
         setOrders(orderList);
         localStorage.setItem(ORDERS_LOCAL_STORAGE_NAME, JSON.stringify(orderList));
-    }
+    };
 
     const saveOrder = async (order: Order) => {
         await delay(1500);
@@ -32,18 +28,22 @@ export const useOrder = () => {
         const currentOrders = getOrders();
 
         setOrders([...currentOrders, order]);
-    }
+    };
 
     const removeOrder = (orderId: string) => {
         const filteredOrders = getOrders().filter(({ id }) => id !== orderId);
 
         saveOrders(filteredOrders);
-    }
+    };
+
+    useEffect(() => {
+        setOrders(getOrders);
+    }, []);
 
     return {
         orders,
         getOrders,
         saveOrder,
         removeOrder,
-    }
-}
+    };
+};

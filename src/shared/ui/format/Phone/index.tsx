@@ -3,7 +3,7 @@ import { PatternFormat } from 'react-number-format';
 
 type Props = {
     phone: string;
-}
+};
 
 export const Phone: FC<Props> = (props) => {
     const { phone } = props;

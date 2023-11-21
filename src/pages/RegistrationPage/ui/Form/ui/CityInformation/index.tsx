@@ -6,7 +6,7 @@ import { Wrapper, Br } from './styles';
 
 type Props = {
     cityId?: string;
-}
+};
 
 export const CityInformation: FC<Props> = (props) => {
     const { cityId } = props;
@@ -27,7 +27,8 @@ export const CityInformation: FC<Props> = (props) => {
 
                 return (
                     <Fragment key={phone}>
-                        <Phone phone={phone} />{suffix}
+                        <Phone phone={phone} />
+                        {suffix}
                     </Fragment>
                 );
             })}

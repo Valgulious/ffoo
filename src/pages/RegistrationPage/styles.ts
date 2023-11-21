@@ -5,4 +5,4 @@ export const Wrapper = styled.div`
     margin: 50px auto;
     display: grid;
     row-gap: 20px;
-`
+`;

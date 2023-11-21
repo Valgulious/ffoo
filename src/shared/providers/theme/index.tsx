@@ -5,7 +5,5 @@ import { theme } from 'shared/styles/theme';
 export const ThemeProvider: FC<PropsWithChildren> = (props) => {
     const { children } = props;
 
-    return (
-        <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
-    );
-}
+    return <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>;
+};

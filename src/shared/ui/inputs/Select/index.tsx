@@ -16,7 +16,7 @@ import {
     Error,
 } from './styles';
 
-export type SelectOption<Key = string> = OptionInterface<Key>
+export type SelectOption<Key = string> = OptionInterface<Key>;
 
 export type SelectProps<
     Option = SelectOption,
@@ -46,9 +46,12 @@ function SelectWitRef<
             placeholder: (_, { isFocused }) => ({ ...placeholderCss(theme, hasError, isFocused) }),
             menuList: () => ({ ...menuListCss(theme) }),
             noOptionsMessage: () => ({ ...noOptionsCss }),
-            option: (_, { isFocused, isSelected }) =>
-                ({ ...optionCss(theme, isFocused, isSelected) }),
-    }), [hasError]);
+            option: (_, { isFocused, isSelected }) => ({
+                ...optionCss(theme, isFocused, isSelected),
+            }),
+        }),
+        [hasError],
+    );
 
     return (
         <Wrapper>
@@ -69,7 +72,7 @@ function SelectWitRef<
             />
             {hasError && <Error>{errorMessage}</Error>}
         </Wrapper>
-    )
+    );
 }
 
 export const Select = forwardRef(SelectWitRef);

@@ -1,14 +1,14 @@
 import { useDates } from 'pages/RegistrationPage/model/swr/useDates';
 import type { Option } from 'shared/types/option';
 
-export const useTimeOptions = (cityId?: string, date?: string): Option[] => {
+export const useTimeOptions = (cityId?: string, selectedDate?: string): Option[] => {
     const { data: dates } = useDates(cityId);
 
-    if (!date) {
+    if (!selectedDate) {
         return [];
     }
 
-    const times = dates?.[date];
+    const times = dates?.[selectedDate];
 
     if (times) {
         return times.map(({ date, begin, end }) => ({
@@ -18,4 +18,4 @@ export const useTimeOptions = (cityId?: string, date?: string): Option[] => {
     }
 
     return [];
-}
+};

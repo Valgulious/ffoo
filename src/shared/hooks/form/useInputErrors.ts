@@ -11,9 +11,9 @@ export function useInputErrors<T extends FieldValues>(
         if (typeof errorMessage === 'string') {
             return {
                 errorMessage,
-            }
+            };
         }
 
         return {};
-    }
+    };
 }
