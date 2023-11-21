@@ -5,10 +5,8 @@ import { PatternFormatInput } from 'shared/ui/inputs/PatternFormatInput';
 import { Select } from 'shared/ui/controlled/Select';
 import type { RegistrationForm } from 'pages/RegistrationPage/model/types/form';
 import { useRegistrationForm, UseRegistrationFormProps } from 'pages/RegistrationPage/model/service/useRegistrationForm';
+import { useRegistrationFormSelects } from 'pages/RegistrationPage/model/service/select/useRegistrationFormSelects.ts';
 import { registrationFormValidationSchema } from 'pages/RegistrationPage/model/validation/registrationFormValidationSchema';
-import { useCityOptions } from 'pages/RegistrationPage/model/service/useCityOptions';
-import { useDateOptions } from 'pages/RegistrationPage/model/service/useDateOptions';
-import { useTimeOptions } from 'pages/RegistrationPage/model/service/useTimeOptions';
 import { CityInformation } from './ui/CityInformation';
 import { Wrapper, SplitInputsContainer, Button } from './styles';
 
@@ -25,15 +23,13 @@ export const Form: FC<Props> = (props) => {
         isValid,
         control,
         watch,
+        setValue,
     } = useRegistrationForm({
-        mode: 'all',
+        mode: 'onBlur',
         resolver: zodResolver(registrationFormValidationSchema),
         ...formProps,
-    })
-    const [city, date] = watch(['city', 'date']);
-    const cityOptions = useCityOptions();
-    const dateOptions = useDateOptions(city?.value);
-    const timeOptions = useTimeOptions(city?.value, date?.value);
+    });
+    const { cityOptions, dateOptions, timeOptions, city } = useRegistrationFormSelects({ watch, setValue });
     const isButtonDisabled = !isValid || isSubmitting;
 
     return (
@@ -45,7 +41,7 @@ export const Form: FC<Props> = (props) => {
                 control={control}
                 {...getInputError('city')}
             />
-            <CityInformation cityId={city?.value} />
+            <CityInformation cityId={city?.value}/>
             <SplitInputsContainer>
                 <Select<RegistrationForm>
                     placeholder="Дата"

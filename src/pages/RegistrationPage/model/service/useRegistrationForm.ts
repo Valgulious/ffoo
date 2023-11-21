@@ -1,5 +1,5 @@
 import { useForm, UseFormProps } from 'react-hook-form';
-import type { RegistrationForm, RegistrationFormSubmitHandler } from 'pages/RegistrationPage/model/types/form.ts';
+import type { RegistrationForm, RegistrationFormSubmitHandler } from 'pages/RegistrationPage/model/types/form';
 import { useInputErrors } from 'shared/hooks/form/useInputErrors';
 
 export type UseRegistrationFormProps = UseFormProps<RegistrationForm> & {
@@ -15,6 +15,7 @@ export const useRegistrationForm = (props: UseRegistrationFormProps) => {
         control,
         watch,
         reset,
+        setValue,
     } = useForm<RegistrationForm>(useFormProps);
     const { errors, isValid } = formState;
     const getInputError = useInputErrors(errors);
@@ -25,6 +26,7 @@ export const useRegistrationForm = (props: UseRegistrationFormProps) => {
         control,
         watch,
         isValid,
+        setValue,
         onSubmit: handleSubmit((data) => onSubmit(data, { reset })),
     }
 }

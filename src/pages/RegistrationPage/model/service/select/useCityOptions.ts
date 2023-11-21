@@ -1,5 +1,5 @@
-import { useCityList } from 'pages/RegistrationPage/model/swr/useCityList.ts';
-import { Option } from 'shared/types/option.ts';
+import { useCityList } from 'pages/RegistrationPage/model/swr/useCityList';
+import type { Option } from 'shared/types/option';
 
 export const useCityOptions = (): Option[] => {
     const { data: cityList } = useCityList();

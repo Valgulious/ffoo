@@ -1,5 +1,5 @@
-import { useDates } from 'pages/RegistrationPage/model/swr/useDates.ts';
-import { Option } from 'shared/types/option.ts';
+import { useDates } from 'pages/RegistrationPage/model/swr/useDates';
+import type { Option } from 'shared/types/option';
 
 export const useTimeOptions = (cityId?: string, date?: string): Option[] => {
     const { data: dates } = useDates(cityId);

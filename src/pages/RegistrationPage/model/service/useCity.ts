@@ -1,6 +1,6 @@
 import { useCityList } from 'pages/RegistrationPage/model/swr/useCityList.ts';
-import { Nullable } from 'shared/types/utility';
-import { City } from 'entities/City';
+import type { Nullable } from 'shared/types/utility';
+import type { City } from 'entities/City';
 
 export const useCity = (cityId?: string): Nullable<City> => {
     const { data: cityList } = useCityList();

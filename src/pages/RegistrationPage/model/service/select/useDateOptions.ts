@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { DATE } from 'shared/const/dateFormat';
-import { Option } from 'shared/types/option';
+import type { Option } from 'shared/types/option';
 import { useDates } from 'pages/RegistrationPage/model/swr/useDates';
 
 export const useDateOptions = (cityId?: string): Option[] => {

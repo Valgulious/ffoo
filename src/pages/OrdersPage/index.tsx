@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useOrder } from 'features/order/service/useOrder';
 import { OrderRow } from './ui/OrderRow';
 import {
@@ -8,17 +8,9 @@ import {
     TBody,
     THead,
 } from './styles';
-import { Order } from 'entities/Order';
 
 export const OrdersPage: FC = () => {
-    const { getOrders, removeOrder: removeOrderFromLocalStorage } = useOrder();
-    const [orders, setOrders] = useState<Order[]>(getOrders());
-
-    const removeOrder = (orderId: string) => {
-        const filteredOrders = removeOrderFromLocalStorage(orderId);
-
-        setOrders(filteredOrders);
-    }
+    const { removeOrder, orders, } = useOrder();
 
     return (
         <Table>
