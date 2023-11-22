@@ -10,7 +10,11 @@ export const Wrapper = styled.form`
 export const SplitInputsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 20px;
+    gap: 20px;
+  
+    @media (max-width: 600px) {
+      grid-template-columns: initial;
+    }
 `;
 
 export const Button = styled(BaseButton)`
