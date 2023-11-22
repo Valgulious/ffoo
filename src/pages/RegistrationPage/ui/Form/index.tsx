@@ -14,11 +14,11 @@ import { CityInformation } from './ui/CityInformation';
 import { Wrapper, SplitInputsContainer, Button } from './styles';
 
 type Props = UseRegistrationFormProps & {
-    isSubmitting: boolean;
+    isLoading?: boolean;
 };
 
 export const Form: FC<Props> = (props) => {
-    const { isSubmitting, ...formProps } = props;
+    const { isLoading, ...formProps } = props;
     const { register, getInputError, onSubmit, isValid, control, watch, setValue } =
         useRegistrationForm({
             mode: 'onBlur',
@@ -29,10 +29,10 @@ export const Form: FC<Props> = (props) => {
         watch,
         setValue,
     });
-    const isButtonDisabled = !isValid || isSubmitting;
+    const isButtonDisabled = !isValid || isLoading;
 
     return (
-        <Wrapper onSubmit={onSubmit}>
+        <Wrapper isLoading={isLoading} onSubmit={onSubmit}>
             <Select<RegistrationForm>
                 placeholder="Город"
                 options={cityOptions}

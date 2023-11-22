@@ -1,10 +1,22 @@
 import styled from '@emotion/styled';
 import { Button as BaseButton } from 'shared/ui/inputs/Button';
+import { css } from '@emotion/react';
 
-export const Wrapper = styled.form`
+type WrapperProps = {
+    isLoading?: boolean;
+}
+
+const loadingFormCss = css`
+    opacity: 0.5;
+    pointer-events: none;
+`
+
+export const Wrapper = styled.form<WrapperProps>`
     margin-top: 40px;
     display: grid;
     row-gap: 20px;
+    
+    ${({ isLoading }) => isLoading && loadingFormCss};
 `;
 
 export const SplitInputsContainer = styled.div`

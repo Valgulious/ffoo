@@ -9,24 +9,24 @@ type Response = {
 
 type DateRecord = Record<string, Time[]>;
 
-export const useDates = (cityId?: string) => {
+export const useDateList = (cityId?: string) => {
     return useSWR(cityId ?? false, async () => {
         if (cityId) {
             const {
                 data: { data },
             } = await apiClient.rest.get<Response>(DATES(cityId));
-            const dates: DateRecord = {};
+            const dateRecord: DateRecord = {};
 
             Object.entries(data).forEach(([date, value]) => {
                 const times = Object.values(value).filter(({ isBooked }) => !isBooked);
 
                 if (times.length > 0) {
-                    dates[date] = times;
+                    dateRecord[date] = times;
                 }
             });
 
-            if (Object.keys(dates).length > 0) {
-                return dates;
+            if (Object.keys(dateRecord).length > 0) {
+                return dateRecord;
             }
 
             return undefined;

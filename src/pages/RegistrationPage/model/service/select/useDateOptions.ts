@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 import { DATE } from 'shared/const/dateFormat';
 import type { Option } from 'shared/types/option';
-import { useDates } from 'pages/RegistrationPage/model/swr/useDates';
+import { useDateList } from 'pages/RegistrationPage/model/swr/useDateList.ts';
 
 export const useDateOptions = (cityId?: string): Option[] => {
-    const { data: dates } = useDates(cityId);
+    const { data: dates } = useDateList(cityId);
 
     if (dates) {
         return Object.keys(dates).map((date) => ({
