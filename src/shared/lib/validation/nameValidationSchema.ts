@@ -3,4 +3,4 @@ import { nameField } from 'shared/lib/validation/messages';
 
 export const nameValidationSchema = string({
     required_error: nameField,
-}).min(1, nameField);
+}).trim().min(1, nameField);
