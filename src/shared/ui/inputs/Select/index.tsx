@@ -42,8 +42,12 @@ function SelectWitRef<
     const hasError = !!errorMessage;
     const customStyles: StylesConfig<Option, IsMulti> = useMemo(
         () => ({
-            control: (_, { menuIsOpen, isFocused }) => ({
-                ...controlCss(theme, menuIsOpen || isFocused, hasError),
+            control: (_, { menuIsOpen, isFocused, isDisabled }) => ({
+                ...controlCss(theme, {
+                    isDisabled,
+                    hasError,
+                    isActive: menuIsOpen || isFocused,
+                }),
             }),
             placeholder: (_, { isFocused }) => ({ ...placeholderCss(theme, hasError, isFocused) }),
             menuList: () => ({ ...menuListCss(theme) }),

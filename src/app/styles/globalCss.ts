@@ -1,10 +1,13 @@
-:root {
+import { css } from '@emotion/react';
+
+export const globalCss = css`
+  :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
-}
+  }
 
-button {
+  button {
     padding: 0;
     border: none;
     cursor: pointer;
@@ -12,22 +15,23 @@ button {
     font: inherit;
     line-height: inherit;
     appearance: none;
-}
+  }
 
-*,
-*::before,
-*::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
-}
+  }
 
-p,
-h4,
-h3,
-h2,
-h1 {
+  p,
+  h4,
+  h3,
+  h2,
+  h1 {
     margin: 0;
-}
+  }
 
-input::-ms-clear {
+  input::-ms-clear {
     display: none;
-}
+  }
+`

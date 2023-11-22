@@ -9,10 +9,9 @@ export const Hint: FC<Props> = (props) => {
 
     return (
         <Wrapper isLoading={isLoading}>
-            Нажимая «Записаться», я выражаю свое согласие с обработкой моих персональных данных в соответствии с принятой
-            &ensp;<Link href="#" linkVariant="external">политикой конфиденциальности</Link>&ensp;
-            и принимаю
-            &ensp;<Link href="#" linkVariant="external">пользовательское соглашение</Link>
+            Нажимая «Записаться», я выражаю свое согласие с обработкой моих персональных данных в соответствии
+            с принятой&ensp;<Link href="#" linkVariant="external">политикой конфиденциальности</Link>&ensp;и
+            принимаю&ensp;<Link href="#" linkVariant="external">пользовательское соглашение</Link>
         </Wrapper>
     );
 };

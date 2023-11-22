@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Loader as BaseLoader } from 'shared/ui/display/Loader';
 
 export const Wrapper = styled.div`
     max-width: 600px;
@@ -7,18 +6,19 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-size: 24px;
-    font-weight: ${({ theme }) => theme.font.weight.semiBold};
-    margin-top: 20px;
+    font-size: 36px;
+    font-weight: ${({ theme }) => theme.font.weight.bold};
 `;
 
-export const LogoContainer = styled.div`
-    position: relative;
+export const SubTitle = styled.h2`
+  font-size: 24px;
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  margin-top: 20px;
 `
 
-export const Loader = styled(BaseLoader)`
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: ${({ theme }) => theme.colors.neutral0};
+export const LogoContainer = styled.div`
+    max-height: 40px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
 `

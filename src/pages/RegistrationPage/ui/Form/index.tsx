@@ -19,13 +19,26 @@ type Props = UseRegistrationFormProps & {
 
 export const Form: FC<Props> = (props) => {
     const { isLoading, ...formProps } = props;
-    const { register, getInputError, onSubmit, isValid, control, watch, setValue } =
-        useRegistrationForm({
-            mode: 'onBlur',
-            resolver: zodResolver(registrationFormValidationSchema),
-            ...formProps,
-        });
-    const { cityOptions, dateOptions, timeOptions, city } = useRegistrationFormSelects({
+    const {
+        register,
+        getInputError,
+        onSubmit,
+        isValid,
+        control,
+        watch,
+        setValue,
+    } = useRegistrationForm({
+        mode: 'onBlur',
+        resolver: zodResolver(registrationFormValidationSchema),
+        ...formProps,
+    });
+    const {
+        cityOptions,
+        dateOptions,
+        timeOptions,
+        city,
+        isTimeSelectDisabled,
+    } = useRegistrationFormSelects({
         watch,
         setValue,
     });
@@ -40,7 +53,7 @@ export const Form: FC<Props> = (props) => {
                 control={control}
                 {...getInputError('city')}
             />
-            <CityInformation cityId={city?.value} />
+            <CityInformation cityId={city?.value}/>
             <SplitInputsContainer>
                 <Select<RegistrationForm>
                     placeholder="Дата"
@@ -54,6 +67,7 @@ export const Form: FC<Props> = (props) => {
                     options={timeOptions}
                     name="time"
                     control={control}
+                    isDisabled={isTimeSelectDisabled}
                     {...getInputError('time')}
                 />
             </SplitInputsContainer>

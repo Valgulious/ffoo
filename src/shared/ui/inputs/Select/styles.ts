@@ -3,6 +3,12 @@ import { css } from '@emotion/react';
 import rgba from 'polished/lib/color/rgba';
 import type { Theme } from 'shared/types/theme';
 
+type ControlOptions = {
+    isActive: boolean;
+    isDisabled: boolean;
+    hasError: boolean;
+}
+
 const activeControlCss = (theme: Theme) => css`
     background-color: ${theme.colors.neutral0};
     border: 1px solid ${theme.colors.neutral400};
@@ -14,7 +20,15 @@ const errorControlCss = (theme: Theme) => css`
     background-color: ${theme.colors.red200};
 `;
 
-export const controlCss = (theme: Theme, isActive: boolean, hasError: boolean) => css`
+const disabledControlCss = css`
+    opacity: 0.5;
+    pointer-events: none;
+`
+
+export const controlCss = (theme: Theme, options: ControlOptions) => {
+    const { isActive, isDisabled, hasError } = options;
+
+    return css`
     border-radius: 4px;
     padding: 20px;
     background-color: ${theme.colors.neutral200};
@@ -23,7 +37,9 @@ export const controlCss = (theme: Theme, isActive: boolean, hasError: boolean) =
 
     ${hasError && errorControlCss(theme)};
     ${isActive && activeControlCss(theme)};
-`;
+    ${isDisabled && disabledControlCss};
+`
+};
 
 const errorPlaceholderCss = (theme: Theme) => css`
     color: ${theme.colors.red900};

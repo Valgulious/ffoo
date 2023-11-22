@@ -13,6 +13,7 @@ export const useRegistrationFormSelects = (args: Args) => {
     const { options: cityOptions, defaultOption: defaultCityOption } = useCityOptions();
     const dateOptions = useDateOptions(city?.value);
     const timeOptions = useTimeOptions(city?.value, date?.value);
+    const isTimeSelectDisabled = !date;
 
     useEffect(() => {
         setValue(
@@ -26,5 +27,6 @@ export const useRegistrationFormSelects = (args: Args) => {
         cityOptions,
         dateOptions,
         timeOptions,
+        isTimeSelectDisabled,
     };
 };

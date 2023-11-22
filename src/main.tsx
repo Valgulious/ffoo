@@ -1,17 +1,19 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { ThemeProvider } from 'shared/providers/theme';
 import { ToastContainer } from 'shared/ui/surfaces/ToastContainer';
-import 'shared/config/dayjs';
-import { router } from './router';
-import './index.css';
+import 'app/config/dayjs';
+import { ThemeProvider } from 'app/providers/theme';
+import { router } from 'app/router';
+import { RootLayout } from 'app/layout';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <ThemeProvider>
-            <RouterProvider router={router} />
-            <ToastContainer />
+            <RootLayout>
+                <RouterProvider router={router} />
+                <ToastContainer />
+            </RootLayout>
         </ThemeProvider>
     </StrictMode>,
 );
