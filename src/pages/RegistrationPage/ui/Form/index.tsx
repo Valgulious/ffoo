@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from 'shared/ui/inputs/Input';
-import { PatternFormatInput } from 'shared/ui/inputs/PatternFormatInput';
+import { PatternFormatInput } from 'shared/ui/controlled/PatternFormatInput';
 import { Select } from 'shared/ui/controlled/Select';
 import {
     useRegistrationForm,
@@ -57,14 +57,14 @@ export const Form: FC<Props> = (props) => {
                     {...getInputError('time')}
                 />
             </SplitInputsContainer>
-            <PatternFormatInput
+            <PatternFormatInput<RegistrationForm>
+                name="phone"
+                control={control}
                 format="+7 (###) ###-##-##"
                 mask="_"
                 inputProps={{
                     placeholder: '+7 (___) ___-__-__',
-                    ...getInputError('phone'),
                 }}
-                {...register('phone')}
             />
             <Input placeholder="Ваше имя" {...register('name')} {...getInputError('name')} />
             <Button type="submit" disabled={isButtonDisabled}>

@@ -10,28 +10,16 @@ type Args = Pick<UseFormReturn<RegistrationForm>, 'watch' | 'setValue'>;
 export const useRegistrationFormSelects = (args: Args) => {
     const { watch, setValue } = args;
     const [city, date] = watch(['city', 'date']);
-    const cityOptions = useCityOptions();
+    const { options: cityOptions, defaultOption: defaultCityOption } = useCityOptions();
     const dateOptions = useDateOptions(city?.value);
     const timeOptions = useTimeOptions(city?.value, date?.value);
 
     useEffect(() => {
         setValue(
             'city',
-            cityOptions.find(({ label }) => label === 'Владивосток'),
+            defaultCityOption,
         );
     }, [cityOptions.length]);
-
-    useEffect(() => {
-        if (dateOptions.length > 0) {
-            setValue('date', dateOptions[0]);
-        }
-    }, [dateOptions.length, city?.value]);
-
-    useEffect(() => {
-        if (timeOptions.length > 0) {
-            setValue('time', timeOptions[0]);
-        }
-    }, [timeOptions.length, date?.value]);
 
     return {
         city,

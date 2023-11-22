@@ -5,6 +5,7 @@ import { showToast } from 'shared/lib/showToast';
 import { Order } from 'entities/Order';
 import { useOrder } from 'features/order/service/useOrder';
 import type { RegistrationFormSubmitHandler } from './model/types/form';
+import { useCityOptions } from './model/service/select/useCityOptions';
 import { Form } from './ui/Form';
 import { Hint } from './ui/Hint';
 import { Wrapper, Title } from './styles';
@@ -12,6 +13,7 @@ import { Wrapper, Title } from './styles';
 export const RegistrationPage: FC = () => {
     const { saveOrder } = useOrder();
     const [isLoading, setIsLoading] = useState(false);
+    const { defaultOption: defaultCityOption } = useCityOptions();
 
     const handleSubmit: RegistrationFormSubmitHandler = async (formData, { reset }) => {
         setIsLoading(true);
@@ -28,7 +30,10 @@ export const RegistrationPage: FC = () => {
 
         await saveOrder(order);
 
-        reset();
+        reset({
+            city: defaultCityOption,
+            name: '',
+        });
         showToast('Запись успешно создана', {
             type: 'success',
         })
@@ -39,7 +44,7 @@ export const RegistrationPage: FC = () => {
         <Wrapper>
             <LogoIcon width={135} />
             <Title>Онлайн запись</Title>
-            <Form onSubmit={handleSubmit} isSubmitting={isLoading} />
+            <Form onSubmit={handleSubmit} isSubmitting={isLoading} defaultValues={{ phone: '' }} />
             <Hint />
         </Wrapper>
     );

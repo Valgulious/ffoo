@@ -35,6 +35,7 @@ function SelectWitRef<
         components,
         placeholder = 'Выбрать...',
         errorMessage,
+        value,
         ...restProps
     } = props;
     const theme = useTheme();
@@ -70,6 +71,7 @@ function SelectWitRef<
                 placeholder={placeholder}
                 noOptionsMessage={() => 'Нет опций'}
                 blurInputOnSelect
+                value={value ?? null}
                 {...restProps}
             />
             {hasError && <Error>{errorMessage}</Error>}

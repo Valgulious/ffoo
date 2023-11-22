@@ -34,5 +34,3 @@ export const Select = <
         />
     );
 };
-
-export type { SelectOption };
