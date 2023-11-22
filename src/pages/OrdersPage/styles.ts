@@ -10,6 +10,8 @@ export const TBody = styled.tbody();
 
 export const Row = styled.tr();
 
-export const HeadCell = styled.th();
+export const HeadCell = styled.th`
+    text-align: start;
+`;
 
 export const Cell = styled.td();

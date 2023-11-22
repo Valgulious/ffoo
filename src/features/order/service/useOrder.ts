@@ -7,19 +7,21 @@ export const useOrder = () => {
     const [orders, setOrders] = useState<Order[]>([]);
 
     const getOrders = (): Order[] => {
-        try {
-            const localStorageContent = localStorage.getItem(ORDERS_LOCAL_STORAGE_NAME);
+        const localStorageContent = localStorage.getItem(ORDERS_LOCAL_STORAGE_NAME);
+
+        if (localStorageContent) {
             const localStorageOrders = JSON.parse(localStorageContent ?? '') as Order[];
 
             return localStorageOrders;
-        } catch {
-            return [];
         }
+
+        return [];
     };
 
     const saveOrders = (orderList: Order[]) => {
-        setOrders(orderList);
         localStorage.setItem(ORDERS_LOCAL_STORAGE_NAME, JSON.stringify(orderList));
+
+        setOrders(orderList);
     };
 
     const saveOrder = async (order: Order) => {
@@ -27,7 +29,7 @@ export const useOrder = () => {
 
         const currentOrders = getOrders();
 
-        setOrders([...currentOrders, order]);
+        saveOrders([...currentOrders, order]);
     };
 
     const removeOrder = (orderId: string) => {
