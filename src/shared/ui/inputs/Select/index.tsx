@@ -6,6 +6,7 @@ import ReactSelect, {
 } from 'react-select';
 import { useTheme } from '@emotion/react';
 import type { Option as OptionInterface } from 'shared/types/option';
+import { DropdownIndicator } from './DropdownIndicator';
 import {
     controlCss,
     placeholderCss,
@@ -62,6 +63,7 @@ function SelectWitRef<
                 components={{
                     IndicatorSeparator: undefined,
                     ClearIndicator: undefined,
+                    DropdownIndicator,
                     ...components,
                 }}
                 isSearchable={isSearchable}
