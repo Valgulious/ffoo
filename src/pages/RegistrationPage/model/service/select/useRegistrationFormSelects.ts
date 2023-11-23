@@ -22,6 +22,14 @@ export const useRegistrationFormSelects = (args: Args) => {
         );
     }, [cityOptions.length]);
 
+    useEffect(() => {
+        setValue('date', undefined);
+    }, [city]);
+
+    useEffect(() => {
+        setValue('time', undefined);
+    }, [date]);
+
     return {
         city,
         cityOptions,
