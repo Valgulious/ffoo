@@ -6,6 +6,11 @@ export const globalCss = css`
     font-size: 16px;
     line-height: 1.5;
   }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
 
   button {
     padding: 0;
